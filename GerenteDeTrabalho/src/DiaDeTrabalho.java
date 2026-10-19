@@ -8,9 +8,21 @@ public class DiaDeTrabalho {
     static final double Almoço = 60;
     double saldoMinutos;
 
-    DiaDeTrabalho(Hora entrada){
+    public DiaDeTrabalho(Hora entrada){
         this.entrada = entrada;
     }
+
+    public boolean registrarSaida(Hora saiu){
+        boolean erro = true;
+        
+        if(saiu != null){
+            saida = saiu;
+            erro = false;
+        }
+        
+        return !erro;
+    }
+
     public String toString() {
         return entrada.toString();
         
