@@ -4,12 +4,13 @@ public class DiaDeTrabalho {
 
     LocalDate data;
     Hora entrada, saida;
-    static final double jornadaPadrao = 480;
-    static final double Almoço = 60;
+    ETrabalho classe;
+    protected int jornadaPadrao;
     double saldoMinutos;
 
-    public DiaDeTrabalho(Hora entrada){
+    public DiaDeTrabalho(Hora entrada, ETrabalho classe){
         this.entrada = entrada;
+        jornadaPadrao = classe.jornada();
     }
 
     public boolean registrarSaida(Hora saiu){
