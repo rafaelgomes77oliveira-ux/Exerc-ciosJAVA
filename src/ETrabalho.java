@@ -1,7 +1,8 @@
 public enum ETrabalho {
-    CLT(8),
+    CLT(480),
     PJ(Integer.MAX_VALUE),
-    PLANTONISTA(12);
+    PLANTONISTA(820),
+    ESCRAVO(Integer.MAX_VALUE);
 
     private int jornadaPadrao;
     

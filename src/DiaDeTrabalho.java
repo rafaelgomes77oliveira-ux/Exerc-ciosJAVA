@@ -2,20 +2,21 @@ import java.time.LocalDate;
 
 public class DiaDeTrabalho {
 
-    private LocalDate data;
+    public final LocalDate data;
     private Hora entrada, saida;
     private ETrabalho classe;
     private int jornadaPadrao;
     private int saldoMinutos;
     private boolean finalizado = false;
 
-    public DiaDeTrabalho(Hora entrada, ETrabalho classe){
+    public DiaDeTrabalho(Hora entrada, ETrabalho classe, LocalDate dia){
         this.entrada = entrada;
-        jornadaPadrao = classe.jornada();
+        this.jornadaPadrao = classe.jornada();
+        this.data = dia;
     }
 
-    protected boolean registrarSaida(Hora saiu){
-        if(saiu != null){
+    public boolean registrarSaida(Hora saiu){
+        if(saiu != null && finalizado == false){
             saida = saiu;
             finalizado = true;
         }
@@ -24,12 +25,15 @@ public class DiaDeTrabalho {
     }
 
     public int saldoDeMinutos(){
+        if(!finalizado){
+            throw new IllegalAccessError("Dia de trabalho não finalizado");
+        }
         saldoMinutos = entrada.diferencaEmMinutos(saida);
         return saldoMinutos;
     }
 
     public String toString() {
-        return entrada.toString();
+        return String.format("DiaDeTrabalho\nSaldo De Minutos: %d\n finalizado: %b", saldoMinutos,finalizado);
     }
     
 

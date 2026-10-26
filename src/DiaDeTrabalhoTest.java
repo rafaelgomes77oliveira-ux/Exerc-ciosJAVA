@@ -14,18 +14,19 @@ public class DiaDeTrabalhoTest {
     Hora hora;
     LocalDate data = LocalDate.of(2006,2,4);
     DiaDeTrabalho dia;
+    Hora hora2;
 
     @BeforeEach
     public void setUp(){
         //arrange
         hora = new Hora(10, 11, 12);
-        dia = new DiaDeTrabalho(hora, ETrabalho.CLT);
+        hora2 = new Hora(11, 12, 13);
+        dia = new DiaDeTrabalho(hora, ETrabalho.CLT, data);
     }
 
     @Test
         //act
         public void registrandoSaida(){
-            Hora hora2 = new Hora(11, 12, 13);
             boolean registrado = dia.registrarSaida(hora2);
             //assert
             assertTrue(registrado);
@@ -34,8 +35,15 @@ public class DiaDeTrabalhoTest {
     @Test
         //act
         public void registrandoSaida2(){
-            Hora hora2 = new Hora(11, 12, 13);
             boolean registrado = dia.registrarSaida(hora2);
+            //assert
+            assertEquals(registrado, true);
+        }
+    @Test
+        public void toStringCorreto(){
+            boolean registrado = dia.registrarSaida(hora2);
+            dia.saldoDeMinutos();
+            IO.println(dia.toString());
             //assert
             assertEquals(registrado, true);
         }

@@ -45,8 +45,8 @@ public class Hora {
         int Minutos = transformarEmSegundos();
         int OutroMinutos = outra.transformarEmSegundos();
         int diferenca = (Minutos - OutroMinutos)/minutoEmSegundos;
-        if (minutos < 0){
-            minutos *= -1;
+        if (diferenca < 0){
+            diferenca *= -1;
         }
         
         return diferenca;
