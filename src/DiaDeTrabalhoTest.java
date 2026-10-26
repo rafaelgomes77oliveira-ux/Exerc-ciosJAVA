@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 
 
-public class TestDiaDeTrabalho {
+public class DiaDeTrabalhoTest {
 
     Hora hora;
     LocalDate data = LocalDate.of(2006,2,4);

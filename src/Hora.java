@@ -1,6 +1,8 @@
 public class Hora {
 
     int horas,minutos,segundos;
+    static final int horaEmSegundos = 3600;
+    static final int minutoEmSegundos = 60;
 
     public Hora(int hora, int minuto, int segundo){
 
@@ -22,29 +24,29 @@ public class Hora {
 
     private int transformarEmSegundos(){
         int segundosTotais = segundos;
-        segundosTotais += minutos * 60;
-        return segundosTotais += horas * 3600;
+        segundosTotais += minutos * minutoEmSegundos;
+        return segundosTotais += horas * horaEmSegundos;
     }
 
     public void incrementar(int minuto){
         int atual = transformarEmSegundos();
-        int incrementoSegundos = minuto * 60;
+        int incrementoSegundos = minuto * minutoEmSegundos;
         atual += incrementoSegundos;
         if(atual > 86399){
             throw new IllegalStateException();
         }
-        horas = atual/3600;
-        minutos = (atual/60 - (3600*horas));
+        horas = atual/horaEmSegundos;
+        minutos = (atual/minutoEmSegundos - (horaEmSegundos*horas));
         validarHora(horas,minutos,segundos);
 
     }
 
     public int diferencaEmMinutos(Hora outra){
-        int Minutos = transformarEmSegundos()/60;
-        int OutroMinutos = outra.transformarEmSegundos()/60;
-        int diferenca = Minutos - OutroMinutos;
+        int Minutos = transformarEmSegundos();
+        int OutroMinutos = outra.transformarEmSegundos();
+        int diferenca = (Minutos - OutroMinutos)/minutoEmSegundos;
         if (minutos < 0){
-            minutos += -1;
+            minutos *= -1;
         }
         
         return diferenca;
